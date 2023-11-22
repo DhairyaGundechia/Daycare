@@ -1,23 +1,32 @@
 package com.neu.csye6200.daycare;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
+
+@Entity
 public class Person {
-    private String ID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
     private String Name;
     private String Email;
-    private int Age;
+    private LocalDate dateOfBirth; ;
 
     public Person() {
     }
 
-    public Person(String ID, String Name, String Email, int Age) {
-        this.ID = ID;
+    public Person(String Name, String Email, LocalDate dateOfBirth) {
         this.Name = Name;
         this.Email = Email;
-        this.Age = Age;
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getID() {
-        return ID;
+    public Long getId() {
+        return Id;
     }
 
     public String getName() {
@@ -28,14 +37,13 @@ public class Person {
         return Email;
     }
 
-    public int getAge() {
-        return Age;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(Long Id) {
+        this.Id = Id;
     }
-
     public void setName(String Name) {
         this.Name = Name;
     }
@@ -44,17 +52,16 @@ public class Person {
         this.Email = Email;
     }
 
-    public void setAge(int Age) {
-        this.Age = Age;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
     public String toString() {
         return "Person Details: " +
-                "\nID=" + ID +
+                "\nID=" + Id +
                 "\n, Name=" + Name +
                 "\n, Email=" + Email +
-                "\n, Age=" + Age + '}';
+                "\n, Date of Birth=" + dateOfBirth;
     }
-
 }

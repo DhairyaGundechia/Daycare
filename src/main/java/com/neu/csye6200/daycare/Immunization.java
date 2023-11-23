@@ -1,19 +1,14 @@
 package com.neu.csye6200.daycare;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
 public class Immunization {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String vaccineName;
     private LocalDate immunizationDate;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
+
     private Student student;
 
     public Immunization() {

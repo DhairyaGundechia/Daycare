@@ -10,7 +10,7 @@ public class FileUtil {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "csye6200";
 
-    public List<Student> getAllStudents() {
+    public static List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
@@ -41,7 +41,7 @@ public class FileUtil {
         return students;
     }
 
-    public List<Teacher> getAllTeachers() {
+    public static List<Teacher> getAllTeachers() {
         List<Teacher> teachers = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);

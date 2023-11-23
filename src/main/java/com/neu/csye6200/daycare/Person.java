@@ -19,12 +19,6 @@ public class Person {
     public Person() {
     }
 
-    public Person(String Name, String Email, LocalDate dateOfBirth) {
-        this.Name = Name;
-        this.Email = Email;
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public Long getId() {
         return Id;
     }

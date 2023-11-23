@@ -1,33 +1,25 @@
 package com.neu.csye6200.daycare;
 
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import java.time.LocalDate;
 
-
-@Entity
 public class Teacher extends Person{
     private double credits;
     private int groupID;
     private int classroomID;
-    @OneToOne
-    @JoinColumn(name = "Id", unique = true)
-    private Person person;
 
     public Teacher(){
         // Default constructor
     }
 
-    public Teacher(double credits, int groupID, int classroomID, Person person){
-        this.credits = credits;
-        this.groupID = groupID;
-        this.classroomID = classroomID;
-        this.person = person;
-    }
-
-    public void setPerson(Person person){
-        this.person = person;
+    public Teacher(String csvData) {
+        String[] data = csvData.split(",");
+        super.setName(data[0]);
+        super.setEmail(data[1]);
+        super.setDateOfBirth(LocalDate.parse(data[2]));
+        this.credits = Double.parseDouble(data[3]);
+        this.groupID = Integer.parseInt(data[4]);
+        this.classroomID = Integer.parseInt(data[5]);
     }
 
     public void setCredits(double credits){
@@ -42,10 +34,6 @@ public class Teacher extends Person{
         this.classroomID = classroomID;
     }
 
-    public Person getPerson(){
-        return person;
-    }
-
     public double getCredits(){
         return credits;
     }
@@ -57,7 +45,6 @@ public class Teacher extends Person{
     public int getClassroomID(){
         return classroomID;
     }
-
 
     @Override
     public String toString() {

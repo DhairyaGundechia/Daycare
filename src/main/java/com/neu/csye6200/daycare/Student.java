@@ -1,10 +1,9 @@
 package com.neu.csye6200.daycare;
 
-import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-@Entity
 public class Student extends Person{
     private String fatherName;
     private String motherName;
@@ -15,29 +14,25 @@ public class Student extends Person{
     private int groupID;
     private int classroomID;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Immunization> immunizations = new ArrayList<>();
-
-    @OneToOne
-    @JoinColumn(name = "Id", unique = true)
-    private Person person;
 
     public Student() {
         // Default constructor
     }
 
-    public Student(String fatherName, String motherName, String address, String phoneNumber,
-                   double gpa, String teacherAssigned, int groupID, int classroomID,
-                   Person person) {
-        this.fatherName = fatherName;
-        this.motherName = motherName;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.gpa = gpa;
-        this.teacherAssigned = teacherAssigned;
-        this.groupID = groupID;
-        this.classroomID = classroomID;
-        this.person = person;
+    public Student(String csvData) {
+        String[] data = csvData.split(",");
+        super.setName(data[0]);
+        super.setEmail(data[1]);
+        super.setDateOfBirth(LocalDate.parse(data[2]));
+        this.fatherName = data[3];
+        this.motherName = data[4];
+        this.address = data[5];
+        this.phoneNumber = data[6];
+        this.gpa = Double.parseDouble(data[7]);
+        this.teacherAssigned = data[8];
+        this.groupID = Integer.parseInt(data[9]);
+        this.classroomID = Integer.parseInt(data[10]);
     }
 
     public void setFatherName(String fatherName){

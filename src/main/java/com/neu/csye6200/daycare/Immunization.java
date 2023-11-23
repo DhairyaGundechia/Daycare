@@ -51,4 +51,12 @@ public class Immunization {
     public void setImmunizationDate(LocalDate immunizationDate) {
         this.immunizationDate = immunizationDate;
     }
+
+    public String printImmunization(Student student) {
+        return "Immunization{" +
+                "vaccineName='" + vaccineName + '\'' +
+                ", immunizationDate=" + immunizationDate +
+                ", student=" + student +
+                '}';
+    }
 }

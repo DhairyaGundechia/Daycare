@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.awt.*;
 
 
-@SpringBootApplication
+
 public class Driver {
 
     public static void main(String[] args) {
-        SpringApplication.run(Driver.class, args);
+       // SpringApplication.run(Driver.class, args);
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Student extends Person{
+    private LocalDate registrationDate;
     private String fatherName;
     private String motherName;
     private String address;
@@ -17,7 +18,8 @@ public class Student extends Person{
     private List<Immunization> immunizations = new ArrayList<>();
 
     public Student() {
-        // Default constructor
+        super();
+        registrationDate = LocalDate.now();
     }
 
     public Student(String csvData) {
@@ -34,6 +36,7 @@ public class Student extends Person{
         this.groupID = Integer.parseInt(data[9]);
         this.classroomID = Integer.parseInt(data[10]);
     }
+
 
     public void setFatherName(String fatherName){
         this.fatherName = fatherName;
@@ -97,6 +100,10 @@ public class Student extends Person{
 
     public int getClassroomID(){
         return classroomID;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
     }
 
     public void addImmunization(Immunization immunization) {

@@ -1,26 +1,23 @@
 package com.neu.csye6200.daycare;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@Entity
+
 public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private int id;
     private String Name;
     private String Email;
     private LocalDate dateOfBirth; ;
 
     public Person() {
+        this.id = count.incrementAndGet();
     }
 
-    public Long getId() {
-        return Id;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -35,8 +32,8 @@ public class Person {
         return dateOfBirth;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setId(int Id) {
+        this.id = Id;
     }
     public void setName(String Name) {
         this.Name = Name;
@@ -53,7 +50,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person Details: " +
-                "\nID=" + Id +
+                "\nID=" + id +
                 "\n, Name=" + Name +
                 "\n, Email=" + Email +
                 "\n, Date of Birth=" + dateOfBirth;

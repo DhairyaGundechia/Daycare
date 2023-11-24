@@ -17,6 +17,6 @@ public class TeacherFactory {
         return new Teacher(csvData);
     }
     public Person getObject() {
-        return null;
+        return new Teacher();
     }
 }

@@ -18,6 +18,6 @@ public class StudentFactory extends PersonFactory {
     }
     @Override
     public Person getObject() {
-        return null;
+        return new Student();
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Immunization {
 
-    private Long id;
+    private int id;
 
     private String vaccineName;
     private LocalDate immunizationDate;
@@ -20,11 +20,11 @@ public class Immunization {
         this.student = student;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

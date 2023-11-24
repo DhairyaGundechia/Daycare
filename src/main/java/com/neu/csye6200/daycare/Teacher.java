@@ -9,6 +9,7 @@ public class Teacher extends Person{
     private int classroomID;
 
     public Teacher(){
+        super();
         // Default constructor
     }
 

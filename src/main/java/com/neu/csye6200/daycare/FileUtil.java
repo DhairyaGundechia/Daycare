@@ -111,14 +111,19 @@ public class FileUtil {
         return teachers;
     }
 
-    public static void saveImmunization(Immunization immunization) {
+    public static void saveImmunizationUnder5(Immunization immunization) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, vaccineName, immunizationDate, student_id) VALUES (?, ?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             stmt.setInt(1, immunization.getId());
-            stmt.setString(2, immunization.getVaccineName());
-            stmt.setDate(3, Date.valueOf(immunization.getImmunizationDate()));
-            stmt.setInt(4, immunization.getStudent().getId());
+            stmt.setDate(2, Date.valueOf(immunization.getHibDate()));
+            stmt.setDate(3, Date.valueOf(immunization.getDtapDate()));
+            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
+            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
+            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setDate(8, null);
+            stmt.setDate(9, null);
 
             stmt.executeUpdate();
             System.out.println("Immunization saved successfully");
@@ -126,4 +131,48 @@ public class FileUtil {
             e.printStackTrace();
         }
     }
+
+    public static void saveImmunizationUnder12(Immunization immunization) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+
+            stmt.setInt(1, immunization.getId());
+            stmt.setDate(2, null);
+            stmt.setDate(3, Date.valueOf(immunization.getDtapDate()));
+            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
+            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
+            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setDate(8, null);
+            stmt.setDate(9, null);
+
+            stmt.executeUpdate();
+            System.out.println("Immunization saved successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveImmunization(Immunization immunization) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+
+            stmt.setInt(1, immunization.getId());
+            stmt.setDate(2, null);
+            stmt.setDate(3, null);
+            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
+            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
+            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setDate(8, Date.valueOf(immunization.getTdapDate()));
+            stmt.setDate(9, Date.valueOf(immunization.getMeningococcalDate()));
+
+            stmt.executeUpdate();
+            System.out.println("Immunization saved successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

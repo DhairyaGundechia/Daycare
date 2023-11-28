@@ -15,8 +15,6 @@ public class Student extends Person{
     private int groupID;
     private int classroomID;
 
-    private List<Immunization> immunizations = new ArrayList<>();
-
     public Student() {
         super();
         registrationDate = LocalDate.now();
@@ -104,20 +102,6 @@ public class Student extends Person{
 
     public LocalDate getRegistrationDate() {
         return registrationDate;
-    }
-
-    public void addImmunization(Immunization immunization) {
-        immunizations.add(immunization);
-        immunization.setStudent(this);
-    }
-
-    public void removeImmunization(Immunization immunization) {
-        immunizations.remove(immunization);
-        immunization.setStudent(null);
-    }
-
-    public List<Immunization> getImmunizations() {
-        return immunizations;
     }
 
     @Override

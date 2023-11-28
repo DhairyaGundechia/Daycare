@@ -5,58 +5,83 @@ import java.time.LocalDate;
 public class Immunization {
 
     private int id;
-
-    private String vaccineName;
-    private LocalDate immunizationDate;
-
-    private Student student;
+    private LocalDate hibDate;
+    private LocalDate dtapDate;
+    private LocalDate polioDate;
+    private LocalDate mmrDate;
+    private LocalDate hepatitisBDate;
+    private LocalDate varicellaDate;
+    private LocalDate tdapDate;
+    private LocalDate meningococcalDate;
 
     public Immunization() {
     }
 
-    public Immunization(String vaccineName, LocalDate immunizationDate, Student student) {
-        this.vaccineName = vaccineName;
-        this.immunizationDate = immunizationDate;
-        this.student = student;
+    public LocalDate getHibDate() {
+        return hibDate;
+    }
+
+    public LocalDate getDtapDate() {
+        return dtapDate;
+    }
+
+    public LocalDate getPolioDate() {
+        return polioDate;
+    }
+
+    public LocalDate getMmrDate() {
+        return mmrDate;
+    }
+
+    public LocalDate getHepatitisBDate() {
+        return hepatitisBDate;
+    }
+
+    public LocalDate getVaricellaDate() {
+        return varicellaDate;
+    }
+
+    public LocalDate getTdapDate() {
+        return tdapDate;
+    }
+
+    public LocalDate getMeningococcalDate() {
+        return meningococcalDate;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setHibDate(LocalDate hibDate) {
+        this.hibDate = hibDate;
     }
 
-    public Student getStudent() {
-    	return student;
+    public void setDtapDate(LocalDate dtapDate) {
+        this.dtapDate = dtapDate;
     }
 
-    public void setStudent(Student student) {
-    	this.student = student;
+    public void setPolioDate(LocalDate polioDate) {
+        this.polioDate = polioDate;
     }
 
-    public String getVaccineName() {
-        return vaccineName;
+    public void setMmrDate(LocalDate mmrDate) {
+        this.mmrDate = mmrDate;
     }
 
-    public void setVaccineName(String vaccineName) {
-        this.vaccineName = vaccineName;
+    public void setHepatitisBDate(LocalDate hepatitisBDate) {
+        this.hepatitisBDate = hepatitisBDate;
     }
 
-    public LocalDate getImmunizationDate() {
-        return immunizationDate;
+    public void setVaricellaDate(LocalDate varicellaDate) {
+        this.varicellaDate = varicellaDate;
     }
 
-    public void setImmunizationDate(LocalDate immunizationDate) {
-        this.immunizationDate = immunizationDate;
+    public void setTdapDate(LocalDate tdapDate) {
+        this.tdapDate = tdapDate;
     }
 
-    public String printImmunization(Student student) {
-        return "Immunization{" +
-                "vaccineName='" + vaccineName + '\'' +
-                ", immunizationDate=" + immunizationDate +
-                ", student=" + student +
-                '}';
+    public void setMeningococcalDate(LocalDate meningococcalDate) {
+        this.meningococcalDate = meningococcalDate;
     }
 }

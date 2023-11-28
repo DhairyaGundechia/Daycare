@@ -1,12 +1,11 @@
 package com.neu.csye6200.daycare;
 
-
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Person {
-    private static final AtomicInteger count = new AtomicInteger(0);
+    private static final AtomicInteger count = new AtomicInteger(10000);
     private int id;
     private String Name;
     private String Email;

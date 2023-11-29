@@ -15,12 +15,13 @@ public class Teacher extends Person{
 
     public Teacher(String csvData) {
         String[] data = csvData.split(",");
-        super.setName(data[0]);
-        super.setEmail(data[1]);
-        super.setDateOfBirth(LocalDate.parse(data[2]));
-        this.credits = Double.parseDouble(data[3]);
-        this.groupID = Integer.parseInt(data[4]);
-        this.classroomID = Integer.parseInt(data[5]);
+        super.setId(Integer.parseInt(data[0]));
+        super.setName(data[1]);
+        super.setEmail(data[2]);
+        super.setDateOfBirth(LocalDate.parse(data[3]));
+        this.credits = Double.parseDouble(data[4]);
+        this.groupID = Integer.parseInt(data[5]);
+        this.classroomID = Integer.parseInt(data[6]);
     }
 
     public void setCredits(double credits){

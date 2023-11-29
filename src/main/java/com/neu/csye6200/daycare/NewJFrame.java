@@ -7,6 +7,7 @@ package com.neu.csye6200.daycare;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -596,7 +597,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         getContentPane().add(teacherRegistrationPanel, "card4");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {Arrays.toString(Daycare.getClassroom().toArray())}));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("CLASSROOM DETAILS");
@@ -611,7 +612,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jButton8.setText("Home");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { Arrays.toString(Daycare.getGroup().toArray())}));
 
         javax.swing.GroupLayout classroomListPanelLayout = new javax.swing.GroupLayout(classroomListPanel);
         classroomListPanel.setLayout(classroomListPanelLayout);
@@ -726,7 +727,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        // GOTO  CLASSROOM LIST 
+        // GOTO  CLASSROOM LIST
+        Daycare.groupMe();
+        cardLayout.show(getContentPane(), "card6");
     }
 
     
@@ -734,7 +737,6 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Immunization immunizationRecord = new Immunization();
 
-        
         immunizationRecord.setHib(Integer.parseInt(jTextField48.getText()));
         immunizationRecord.setHibDate(LocalDate.parse(jTextField50.getText()));
         immunizationRecord.setDtap(Integer.parseInt(jTextField51.getText()));

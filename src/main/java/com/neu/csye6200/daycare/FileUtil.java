@@ -43,7 +43,8 @@ public class FileUtil {
              ResultSet rs = stmt.executeQuery("SELECT * FROM student")) {
 
             while (rs.next()) {
-                Long id = rs.getLong("id");
+                LocalDate registrationDate = rs.getDate("registrationDate").toLocalDate();
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 LocalDate dob = rs.getDate("dateOfBirth").toLocalDate();
@@ -55,7 +56,7 @@ public class FileUtil {
                 String teacherAssigned = rs.getString("teacherAssigned");
                 int groupId = rs.getInt("groupId");
                 int classroomId = rs.getInt("classroomId");
-                String csvData = String.valueOf(id) + "," + name + "," + email + "," + String.valueOf(dob) + "," + fatherName + "," + motherName + "," + address + "," + phoneNumber + "," + String.valueOf(gpa) + "," + teacherAssigned + "," + String.valueOf(groupId) + "," + String.valueOf(classroomId); 
+                String csvData = String.valueOf(registrationDate) + "," + String.valueOf(id) + "," + name + "," + email + "," + String.valueOf(dob) + "," + fatherName + "," + motherName + "," + address + "," + phoneNumber + "," + String.valueOf(gpa) + "," + teacherAssigned + "," + String.valueOf(groupId) + "," + String.valueOf(classroomId);
                 Student student = new Student(csvData);
                 students.add(student);
             }
@@ -93,7 +94,7 @@ public class FileUtil {
              ResultSet rs = stmt.executeQuery("SELECT * FROM teacher")) {
 
             while (rs.next()) {
-                Long id = rs.getLong("id");
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 LocalDate dob = rs.getDate("dateOfBirth").toLocalDate();

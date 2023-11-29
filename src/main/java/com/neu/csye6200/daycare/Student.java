@@ -22,17 +22,19 @@ public class Student extends Person{
 
     public Student(String csvData) {
         String[] data = csvData.split(",");
-        super.setName(data[0]);
-        super.setEmail(data[1]);
-        super.setDateOfBirth(LocalDate.parse(data[2]));
-        this.fatherName = data[3];
-        this.motherName = data[4];
-        this.address = data[5];
-        this.phoneNumber = data[6];
-        this.gpa = Double.parseDouble(data[7]);
-        this.teacherAssigned = data[8];
-        this.groupID = Integer.parseInt(data[9]);
-        this.classroomID = Integer.parseInt(data[10]);
+        this.registrationDate = LocalDate.parse(data[0]);
+        super.setId(Integer.parseInt(data[1]));
+        super.setName(data[2]);
+        super.setEmail(data[3]);
+        super.setDateOfBirth(LocalDate.parse(data[4]));
+        this.fatherName = data[5];
+        this.motherName = data[6];
+        this.address = data[7];
+        this.phoneNumber = data[8];
+        this.gpa = Double.parseDouble(data[9]);
+        this.teacherAssigned = data[10];
+        this.groupID = Integer.parseInt(data[11]);
+        this.classroomID = Integer.parseInt(data[12]);
     }
 
 

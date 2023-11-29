@@ -113,17 +113,25 @@ public class FileUtil {
 
     public static void saveImmunizationUnder5(Immunization immunization) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hib, hibDate, dtap, dtapDate, polio, polioDate, hepatitisB, hepatitisBDate, mmr, mmrDate, varicella, varicellaDate, tdap, tdapDate, meningococcal, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             stmt.setInt(1, immunization.getId());
-            stmt.setDate(2, Date.valueOf(immunization.getHibDate()));
-            stmt.setDate(3, Date.valueOf(immunization.getDtapDate()));
-            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
-            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
-            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
-            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
-            stmt.setDate(8, null);
-            stmt.setDate(9, null);
+            stmt.setInt(2, immunization.getHib());
+            stmt.setDate(3, Date.valueOf(immunization.getHibDate()));
+            stmt.setInt(4, immunization.getDtap());
+            stmt.setDate(5, Date.valueOf(immunization.getDtapDate()));
+            stmt.setInt(6, immunization.getPolio());
+            stmt.setDate(7, Date.valueOf(immunization.getPolioDate()));
+            stmt.setInt(8, immunization.getHepatitisB());
+            stmt.setDate(9, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setInt(10, immunization.getMmr());
+            stmt.setDate(11, Date.valueOf(immunization.getMmrDate()));
+            stmt.setInt(12, immunization.getVaricella());
+            stmt.setDate(13, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setInt(14, 0);
+            stmt.setDate(15, null);
+            stmt.setInt(16, 0);
+            stmt.setDate(17, null);
 
             stmt.executeUpdate();
             System.out.println("Immunization saved successfully");
@@ -134,17 +142,25 @@ public class FileUtil {
 
     public static void saveImmunizationUnder12(Immunization immunization) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hib, hibDate, dtap, dtapDate, polio, polioDate, hepatitisB, hepatitisBDate, mmr, mmrDate, varicella, varicellaDate, tdap, tdapDate, meningococcal, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             stmt.setInt(1, immunization.getId());
-            stmt.setDate(2, null);
-            stmt.setDate(3, Date.valueOf(immunization.getDtapDate()));
-            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
-            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
-            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
-            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
-            stmt.setDate(8, null);
-            stmt.setDate(9, null);
+            stmt.setInt(2, 0);
+            stmt.setDate(3, null);
+            stmt.setInt(4, immunization.getDtap());
+            stmt.setDate(5, Date.valueOf(immunization.getDtapDate()));
+            stmt.setInt(6, immunization.getPolio());
+            stmt.setDate(7, Date.valueOf(immunization.getPolioDate()));
+            stmt.setInt(8, immunization.getHepatitisB());
+            stmt.setDate(9, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setInt(10, immunization.getMmr());
+            stmt.setDate(11, Date.valueOf(immunization.getMmrDate()));
+            stmt.setInt(12, immunization.getVaricella());
+            stmt.setDate(13, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setInt(14, 0);
+            stmt.setDate(15, null);
+            stmt.setInt(16, 0);
+            stmt.setDate(17, null);
 
             stmt.executeUpdate();
             System.out.println("Immunization saved successfully");
@@ -155,17 +171,25 @@ public class FileUtil {
 
     public static void saveImmunization(Immunization immunization) {
         try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hibDate, dtapDate, polioDate, hepatitisBDate, mmrDate, varicellaDate, tdapDate, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO immunization (id, hib, hibDate, dtap, dtapDate, polio, polioDate, hepatitisB, hepatitisBDate, mmr, mmrDate, varicella, varicellaDate, tdap, tdapDate, meningococcal, meningococcalDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
 
             stmt.setInt(1, immunization.getId());
-            stmt.setDate(2, null);
+            stmt.setInt(2, 0);
             stmt.setDate(3, null);
-            stmt.setDate(4, Date.valueOf(immunization.getPolioDate()));
-            stmt.setDate(5, Date.valueOf(immunization.getHepatitisBDate()));
-            stmt.setDate(6, Date.valueOf(immunization.getMmrDate()));
-            stmt.setDate(7, Date.valueOf(immunization.getVaricellaDate()));
-            stmt.setDate(8, Date.valueOf(immunization.getTdapDate()));
-            stmt.setDate(9, Date.valueOf(immunization.getMeningococcalDate()));
+            stmt.setInt(4, 0);
+            stmt.setDate(5, null);
+            stmt.setInt(6, immunization.getPolio());
+            stmt.setDate(7, Date.valueOf(immunization.getPolioDate()));
+            stmt.setInt(8, immunization.getHepatitisB());
+            stmt.setDate(9, Date.valueOf(immunization.getHepatitisBDate()));
+            stmt.setInt(10, immunization.getMmr());
+            stmt.setDate(11, Date.valueOf(immunization.getMmrDate()));
+            stmt.setInt(12, immunization.getVaricella());
+            stmt.setDate(13, Date.valueOf(immunization.getVaricellaDate()));
+            stmt.setInt(14, immunization.getTdap());
+            stmt.setDate(15, Date.valueOf(immunization.getTdapDate()));
+            stmt.setInt(16, immunization.getMeningococcal());
+            stmt.setDate(17, Date.valueOf(immunization.getMeningococcalDate()));
 
             stmt.executeUpdate();
             System.out.println("Immunization saved successfully");

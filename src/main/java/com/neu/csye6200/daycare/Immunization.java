@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Immunization {
 
     private int id;
+    private int hib, dtap, polio, mmr, hepatitisB, varicella, tdap, meningococcal;
     private LocalDate hibDate;
     private LocalDate dtapDate;
     private LocalDate polioDate;
@@ -15,6 +16,74 @@ public class Immunization {
     private LocalDate meningococcalDate;
 
     public Immunization() {
+    }
+
+    public int getHib() {
+        return hib;
+    }
+
+    public int getDtap() {
+        return dtap;
+    }
+
+    public int getPolio() {
+        return polio;
+    }
+
+    public int getMmr() {
+        return mmr;
+    }
+
+    public int getHepatitisB() {
+        return hepatitisB;
+    }
+
+    public int getVaricella() {
+        return varicella;
+    }
+
+    public int getTdap() {
+        return tdap;
+    }
+
+    public int getMeningococcal() {
+        return meningococcal;
+    }
+
+    public void setHib(int hib) {
+        this.hib = hib;
+    }
+
+    public void setDtap(int dtap) {
+        this.dtap = dtap;
+    }
+
+    public void setPolio(int polio) {
+        this.polio = polio;
+    }
+
+    public void setMmr(int mmr) {
+        this.mmr = mmr;
+    }
+
+    public void setHepatitisB(int hepatitisB) {
+        this.hepatitisB = hepatitisB;
+    }
+
+    public void setVaricella(int varicella) {
+        this.varicella = varicella;
+    }
+
+    public void setTdap(int tdap) {
+        this.tdap = tdap;
+    }
+
+    public void setMeningococcal(int meningococcal) {
+        this.meningococcal = meningococcal;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getHibDate() {

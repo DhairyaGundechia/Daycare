@@ -93,8 +93,34 @@ public class GroupHelper {
 
                 }
             }
-            temp = temp + 1;
+            temp = temp + size;
         }
+
+        List<Classroom> classes = new ArrayList<>();
+        int tempC = 0;
+        int numClassrooms = 0;
+        if(groups.size()%classSize == 0) {
+            numClassrooms = groups.size()/classSize;
+
+        } else {
+            numClassrooms = groups.size()/classSize + 1;
+        }
+
+        System.out.println("number of classrooms");
+        System.out.println(groups.size());
+        System.out.println(numClassrooms);
+        for(int i = 0; i<numClassrooms; i++) {
+            classes.add(ClassroomFactory.getInstance().getObject());
+            for(int j = 0; j < classSize; j++) {
+                if((tempC+j) < groups.size()) {
+                    classes.get(i).addGroups(groups.get(tempC + j));
+                }
+            }
+
+            tempC = tempC + classSize;
+        }
+
+        classes.forEach(c -> Daycare.addClassroom(c));
 
     }
 

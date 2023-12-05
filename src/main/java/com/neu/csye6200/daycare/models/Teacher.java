@@ -1,16 +1,17 @@
-package com.neu.csye6200.daycare;
+package com.neu.csye6200.daycare.models;
 
+
+import com.neu.csye6200.daycare.models.Person;
 
 import java.time.LocalDate;
 
-public class Teacher extends Person{
+public class Teacher extends Person {
     private double credits;
     private int groupID;
     private int classroomID;
 
     public Teacher(){
         super();
-        // Default constructor
     }
 
     public Teacher(String csvData) {

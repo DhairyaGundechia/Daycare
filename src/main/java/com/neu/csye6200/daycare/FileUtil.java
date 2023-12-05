@@ -1,5 +1,9 @@
 package com.neu.csye6200.daycare;
 
+import com.neu.csye6200.daycare.models.Immunization;
+import com.neu.csye6200.daycare.models.Student;
+import com.neu.csye6200.daycare.models.Teacher;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

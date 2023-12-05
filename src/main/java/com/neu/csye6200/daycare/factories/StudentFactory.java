@@ -1,4 +1,7 @@
-package com.neu.csye6200.daycare;
+package com.neu.csye6200.daycare.factories;
+
+import com.neu.csye6200.daycare.models.Person;
+import com.neu.csye6200.daycare.models.Student;
 
 public class StudentFactory extends PersonFactory {
     private static StudentFactory instance;

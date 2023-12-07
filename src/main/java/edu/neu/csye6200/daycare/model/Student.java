@@ -1,10 +1,9 @@
-package com.neu.csye6200.daycare.models;
+package edu.neu.csye6200.daycare.model;
 
-import com.neu.csye6200.daycare.models.Person;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.time.LocalDate;
+
 @Entity(name = "student")
 public class Student extends Person {
     @Column(name = "gpa")
@@ -28,5 +27,4 @@ public class Student extends Person {
     public void setGpa(double gpa){
         this.gpa = gpa;
     }
-
 }

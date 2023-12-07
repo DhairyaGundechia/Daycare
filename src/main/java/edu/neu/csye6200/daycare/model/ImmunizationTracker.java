@@ -11,7 +11,7 @@ import java.util.Map;
 @Entity(name = "immunizationTracker")
 public class ImmunizationTracker {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
     @Column(name = "studentId")
     private int studentId;

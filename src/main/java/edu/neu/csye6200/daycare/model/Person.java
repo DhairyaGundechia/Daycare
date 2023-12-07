@@ -10,7 +10,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
     @Column(name = "firstName", nullable = false)
     private String firstName;

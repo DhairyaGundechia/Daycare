@@ -6,10 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 
-@Entity(name = "table_classrooms")
+@Entity(name = "classrooms")
 public class ClassSections {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(name = "class_room_id")
     private int classRoomId;
     @Column(name = "class_rule_id")

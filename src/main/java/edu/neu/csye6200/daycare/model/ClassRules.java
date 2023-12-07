@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 
-@Entity(name = "table_class_rules")
+@Entity(name = "classRules")
 public class ClassRules {
     @Id
     @Column(name = "class_id")

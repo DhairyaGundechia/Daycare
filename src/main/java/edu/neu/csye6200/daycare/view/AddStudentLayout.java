@@ -76,6 +76,21 @@ public class AddStudentLayout extends JFrame {
         jLabel6.setText("Address");
 
         jLabel7.setText("Date of Birth");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        jTextField3.setText("jTextField3");
+
+        jTextField4.setText("jTextField4");
+
+        jTextField5.setText("jTextField5");
+
+        jTextField6.setText("jTextField6");
+
+        jButton1.setText("Register");
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -83,6 +98,11 @@ public class AddStudentLayout extends JFrame {
         });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +192,13 @@ public class AddStudentLayout extends JFrame {
         // TODO add your handling code here:
         this.validateUserInput();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        LandingPageLayout secondFrame = new LandingPageLayout();
+        secondFrame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void validateUserInput() {
         Student person = new Student();

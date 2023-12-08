@@ -66,17 +66,17 @@ public class AddTeacherLayout extends javax.swing.JFrame {
 
         jLabel7.setText("Hourly Wage");
 
-//        jTextField1.setText("jTextField1");
-//
-//        jTextField2.setText("jTextField2");
-//
-//        jTextField3.setText("jTextField3");
-//
-//        jTextField4.setText("jTextField4");
-//
-//        jTextField5.setText("jTextField5");
-//
-//        jTextField6.setText("jTextField6");
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        jTextField3.setText("jTextField3");
+
+        jTextField4.setText("jTextField4");
+
+        jTextField5.setText("jTextField5");
+
+        jTextField6.setText("jTextField6");
 
         jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +86,11 @@ public class AddTeacherLayout extends javax.swing.JFrame {
         });
 
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,6 +184,15 @@ public class AddTeacherLayout extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.validateUserInput();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        
+        // Open the second frame
+        LandingPageLayout secondFrame = new LandingPageLayout();
+        secondFrame.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

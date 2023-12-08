@@ -77,18 +77,6 @@ public class AddStudentLayout extends JFrame {
 
         jLabel7.setText("Date of Birth");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
         jButton1.setText("Register");
 
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -253,25 +241,6 @@ public class AddStudentLayout extends JFrame {
         session.getTransaction().commit();
         session.close();
         mapStudentToClass(person);
-    }
-    
-    private void addToDatabase() {
-
-        Person person;
-        try {
-            person = this.studentFactory.getObject(jTextField1.getText(),
-                    jTextField2.getText(),
-                    jTextField3.getText(),
-                    jTextField6.getText(),
-                    jTextField4.getText(),
-                    jTextField5.getText());
-
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error!!",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
     }
 
     private void mapStudentToClass(Student student) {

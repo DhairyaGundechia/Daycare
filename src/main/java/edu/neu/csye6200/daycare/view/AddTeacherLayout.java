@@ -3,7 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package edu.neu.csye6200.daycare.view;
+import edu.neu.csye6200.daycare.model.Teacher;
+import edu.neu.csye6200.daycare.utils.Utils;
+import java.time.LocalDate;
+import java.util.function.Function;
+import javax.swing.*;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 /**
  *
  * @author dhair
@@ -58,19 +66,24 @@ public class AddTeacherLayout extends javax.swing.JFrame {
 
         jLabel7.setText("Hourly Wage");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
+//        jTextField1.setText("jTextField1");
+//
+//        jTextField2.setText("jTextField2");
+//
+//        jTextField3.setText("jTextField3");
+//
+//        jTextField4.setText("jTextField4");
+//
+//        jTextField5.setText("jTextField5");
+//
+//        jTextField6.setText("jTextField6");
 
         jButton1.setText("Register");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Back");
 
@@ -162,6 +175,11 @@ public class AddTeacherLayout extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.validateUserInput();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +213,56 @@ public class AddTeacherLayout extends javax.swing.JFrame {
                 new AddTeacherLayout().setVisible(true);
             }
         });
+    }
+
+    protected void showErrorOnWrongInput(JTextField TextField, String message) {
+        JOptionPane.showMessageDialog(new JFrame(), message.toUpperCase(), "Error!!",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void validateUserInput() {
+        Teacher teacher = new Teacher();
+        if (this.jTextField1.getText().isEmpty()) {
+            this.showErrorOnWrongInput(this.jTextField1, "First Name shouldn't be empty");
+            return;
+        }
+        teacher.setFirstName(this.jTextField1.getText());
+
+        if (this.jTextField2.getText().isEmpty()) {
+            this.showErrorOnWrongInput(this.jTextField2, "Last Name shouldn't be empty");
+            return;
+        }
+        teacher.setLastName(this.jTextField2.getText());
+
+        teacher.setAddress("Boston");
+        teacher.setParentFullName ("Null");
+
+        if (!Utils.VALIDATE_EMAIL_ADDRESS.apply(this.jTextField3.getText())) {
+            this.showErrorOnWrongInput(this.jTextField3, "Enter valid Email Id");
+            return;
+        }
+        teacher.setEmailId(this.jTextField3.getText());
+
+        if (!Utils.isDateValid(this.jTextField4.getText(), true)) {
+            this.showErrorOnWrongInput(this.jTextField4, "Enter valid Date of Birth");
+
+            return;
+        }
+        teacher.setDateOfBirth(this.jTextField6.getText());
+        teacher.setPassword(Utils.GENERATE_PASSWORD.apply(teacher.getEmail()));
+        teacher.setCreatedOn(LocalDate.now().toString());
+        teacher.setCredits(Integer.parseInt(this.jTextField5.getText()));
+        teacher.setHourlyWage(Integer.parseInt(this.jTextField6.getText()));
+
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate.cfg.xml");
+        configuration.addAnnotatedClass(Teacher.class);
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(teacher);
+        session.getTransaction().commit();
+        session.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

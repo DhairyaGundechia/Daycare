@@ -1,32 +1,24 @@
 package edu.neu.csye6200.daycare.repositories;
 
 import edu.neu.csye6200.daycare.model.Immunization;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
 
 public class ImmunizationRepository {
 
-    private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final Session session = EntityManagerUtil.getSession();
 
     public Immunization findByVaccineName(String name) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
+        session.beginTransaction();
 
-        TypedQuery<Immunization> query = entityManager.createQuery(
+        TypedQuery<Immunization> query = session.createQuery(
                 "SELECT v FROM immunization v WHERE v.vaccineName = :vaccineName",
                 Immunization.class);
         query.setParameter("vaccineName", name);
 
         Immunization result = query.getSingleResult();
 
-        transaction.commit();
+        session.getTransaction().commit();
         return result;
-    }
-
-    public void closeEntityManager() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
     }
 }

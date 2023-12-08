@@ -1,19 +1,17 @@
 package edu.neu.csye6200.daycare.repositories;
 
 import edu.neu.csye6200.daycare.model.Student;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
 
 public class StudentRepository {
 
-    private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final Session session = EntityManagerUtil.getSession();
 
     public Student getByEmailIdAndPassword(String emailId, String password) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
+        session.beginTransaction();
 
-        TypedQuery<Student> query = entityManager.createQuery(
+        TypedQuery<Student> query = session.createQuery(
                 "SELECT s FROM student s WHERE s.emailId = :emailId AND s.password = :password",
                 Student.class);
         query.setParameter("emailId", emailId);
@@ -21,14 +19,10 @@ public class StudentRepository {
 
         Student result = query.getSingleResult();
 
-        transaction.commit();
+        session.getTransaction().commit();
         return result;
     }
 
-    public void closeEntityManager() {
-        if (entityManager != null && entityManager.isOpen()) {
-            entityManager.close();
-        }
-    }
+
 }
 

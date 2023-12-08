@@ -2,49 +2,40 @@ package edu.neu.csye6200.daycare.repositories;
 
 
 import edu.neu.csye6200.daycare.model.ImmunizationTracker;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
 
 public class ImmunizationTrackerRepository {
 
-        private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final Session session = EntityManagerUtil.getSession();
 
         public ImmunizationTracker findTopByStudentId(int studentId) {
-            EntityTransaction transaction = entityManager.getTransaction();
-            transaction.begin();
+            session.beginTransaction();
 
-            TypedQuery<ImmunizationTracker> query = entityManager.createQuery(
-                    "SELECT i FROM immunizationTracker i WHERE i.studentId = :studentId ORDER BY i.someField DESC",
+            TypedQuery<ImmunizationTracker> query = session.createQuery(
+                    "SELECT i FROM immunizationTracker i WHERE i.studentId = :studentId ORDER BY i.id DESC",
                     ImmunizationTracker.class);
             query.setParameter("studentId", studentId);
             query.setMaxResults(1);
 
             ImmunizationTracker result = query.getSingleResult();
 
-            transaction.commit();
+            session.getTransaction().commit();
             return result;
         }
 
         public ImmunizationTracker findByStudentId(int studentId) {
-            EntityTransaction transaction = entityManager.getTransaction();
-            transaction.begin();
+            session.beginTransaction();
 
-            TypedQuery<ImmunizationTracker> query = entityManager.createQuery(
+            TypedQuery<ImmunizationTracker> query = session.createQuery(
                     "SELECT i FROM immunizationTracker i WHERE i.studentId = :studentId",
                     ImmunizationTracker.class);
             query.setParameter("studentId", studentId);
 
             ImmunizationTracker result = query.getSingleResult();
 
-            transaction.commit();
+            session.getTransaction().commit();
             return result;
-        }
-
-        public void closeEntityManager() {
-            if (entityManager != null && entityManager.isOpen()) {
-                entityManager.close();
-            }
         }
 }
 

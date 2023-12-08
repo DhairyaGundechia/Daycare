@@ -30,7 +30,7 @@ public class TeacherRepository {
         transaction.begin();
 
         TypedQuery<Teacher> query = entityManager.createQuery(
-                "SELECT t FROM teacher t WHERE t.assignedClassRoomId = :assignedClass ORDER BY t.id",
+                "SELECT t FROM teacher t WHERE t.classroomId = :assignedClass ORDER BY t.id",
                 Teacher.class);
         query.setParameter("assignedClass", assignedClass);
         query.setMaxResults(1);
@@ -45,5 +45,12 @@ public class TeacherRepository {
         if (entityManager != null && entityManager.isOpen()) {
             entityManager.close();
         }
+    }
+
+    public void save(Teacher finalized) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(finalized);
+        transaction.commit();
     }
 }

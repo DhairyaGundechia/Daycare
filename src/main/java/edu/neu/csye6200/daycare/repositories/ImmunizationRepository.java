@@ -7,7 +7,7 @@ import jakarta.persistence.TypedQuery;
 
 public class ImmunizationRepository {
 
-    private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
     public Immunization findByVaccineName(String name) {
         EntityTransaction transaction = entityManager.getTransaction();

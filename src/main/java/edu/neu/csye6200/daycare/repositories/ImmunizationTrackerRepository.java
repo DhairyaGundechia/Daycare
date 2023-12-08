@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 
 public class ImmunizationTrackerRepository {
 
-        private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+        private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
         public ImmunizationTracker findTopByStudentId(int studentId) {
             EntityTransaction transaction = entityManager.getTransaction();

@@ -12,7 +12,7 @@ public class ClassroomRepository {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
-        ClassSections result = entityManager.createQuery("SELECT c FROM ClassSections c WHERE c.minAge < :age2 AND c.maxAge > :age1 ORDER BY c.classRoomId", ClassSections.class)
+        ClassSections result = entityManager.createQuery("SELECT c FROM classrooms c WHERE c.minAge < :age2 AND c.maxAge > :age1 ORDER BY c.classRoomId", ClassSections.class)
                 .setParameter("age1", age1)
                 .setParameter("age2", age2)
                 .setMaxResults(1)
@@ -26,7 +26,7 @@ public class ClassroomRepository {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
-        ClassSections result = entityManager.createQuery("SELECT c FROM ClassSections c WHERE :studentId MEMBER OF c.studentIds", ClassSections.class)
+        ClassSections result = entityManager.createQuery("SELECT c FROM classrooms c WHERE :studentId MEMBER OF c.studentIds", ClassSections.class)
                 .setParameter("studentId", studentId)
                 .setMaxResults(1)
                 .getSingleResult();
@@ -41,5 +41,12 @@ public class ClassroomRepository {
         if (entityManager != null && entityManager.isOpen()) {
             entityManager.close();
         }
+    }
+
+    public void save(ClassSections classSections) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(classSections);
+        transaction.commit();
     }
 }

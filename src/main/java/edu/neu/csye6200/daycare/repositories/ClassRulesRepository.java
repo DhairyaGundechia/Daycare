@@ -7,7 +7,7 @@ import jakarta.persistence.TypedQuery;
 
 public class ClassRulesRepository {
 
-    private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
     public ClassRules findTopByMinAgeBeforeAndMaxAgeAfter(int age1, int age2) {
         EntityTransaction transaction = entityManager.getTransaction();

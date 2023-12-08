@@ -32,7 +32,6 @@ public class Person {
     private int age;
 
     public Person() {
-
     }
 
     public Person(String firstName, String lastName, String emailId, String dateOfBirth, String parentFullName, String address) {

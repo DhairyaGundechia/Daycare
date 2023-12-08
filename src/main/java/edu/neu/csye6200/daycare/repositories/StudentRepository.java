@@ -7,7 +7,7 @@ import jakarta.persistence.TypedQuery;
 
 public class StudentRepository {
 
-    private EntityManager entityManager = EntityManagerUtil.getEntityManager();
+    private final EntityManager entityManager = EntityManagerUtil.getEntityManager();
 
     public Student getByEmailIdAndPassword(String emailId, String password) {
         EntityTransaction transaction = entityManager.getTransaction();

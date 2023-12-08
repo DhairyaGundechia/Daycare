@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 public class TeacherRepository {
 
-    private final Session session = EntityManagerUtil.getSession();
+    private final Session session = SessionUtil.getSession();
 
     public Teacher getByEmailIdAndPassword(String emailId, String password) {
         session.beginTransaction();

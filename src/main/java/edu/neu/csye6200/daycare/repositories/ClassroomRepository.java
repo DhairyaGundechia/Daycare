@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 public class ClassroomRepository {
 
-    private final Session session = EntityManagerUtil.getSession();
+    private final Session session = SessionUtil.getSession();
 
     public ClassSections findTopByMinAgeBeforeAndMaxAgeAfterOrderByClassRoomId(int age1, int age2) {
         session.beginTransaction();

@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 public class ImmunizationRepository {
 
-    private final Session session = EntityManagerUtil.getSession();
+    private final Session session = SessionUtil.getSession();
 
     public Immunization findByVaccineName(String name) {
         session.beginTransaction();

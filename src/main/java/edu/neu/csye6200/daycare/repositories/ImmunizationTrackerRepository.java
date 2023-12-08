@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 public class ImmunizationTrackerRepository {
 
-    private final Session session = EntityManagerUtil.getSession();
+    private final Session session = SessionUtil.getSession();
 
         public ImmunizationTracker findTopByStudentId(int studentId) {
             session.beginTransaction();

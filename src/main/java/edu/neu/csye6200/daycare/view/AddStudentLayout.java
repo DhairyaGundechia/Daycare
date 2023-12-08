@@ -4,6 +4,7 @@
  */
 package edu.neu.csye6200.daycare.view;
 
+import edu.neu.csye6200.daycare.cronservice.ClassroomController;
 import edu.neu.csye6200.daycare.factories.AbstractPersonFactory;
 import edu.neu.csye6200.daycare.factories.StudentFactory;
 import edu.neu.csye6200.daycare.model.*;
@@ -240,42 +241,10 @@ public class AddStudentLayout extends JFrame {
         session.save(person);
         session.getTransaction().commit();
         session.close();
-        mapStudentToClass(person);
+        classroomController.mapStudentToClass(person);
     }
 
-    private void mapStudentToClass(Student student) {
-        ClassSections classSections = classroomRepository.findTopByMinAgeBeforeAndMaxAgeAfterOrderByClassRoomId(student.getAge() + 1, student.getAge() - 1);
-        if (classSections == null || classSections.getCurrentCapacity() >= classSections.getMaxCapacity()) {
-            ClassRules classRules = classRulesRepository.findTopByMinAgeBeforeAndMaxAgeAfter(student.getAge() + 1, student.getAge() - 1);
-            Teacher finalized = teacherRepository.findTopByAssignedClassRoomIdOrderById(0);
-            if (finalized == null) {
-                System.out.println("No teachers available to assist");
-                return;
-            }
-            classSections = new ClassSections(classRules.getClassId(), classRules.getMinAge(),
-                    classRules.getMaxAge(), classRules.getMaxGroupsPerClassRoom() * classRules.getStudentTeacherRation(),
-                    classRules.getStudentTeacherRation(), String.format("#%d#", student.getId()),
-                    student.getFirstName(), String.format("#%d#", finalized.getId()), finalized.getFirstName());
-            classroomRepository.save(classSections);
-            finalized.setClassroomId(classSections.getClassRoomId());
-            teacherRepository.save(finalized);
-            return;
-        }
-        if (classSections.getCurrentCapacity() % classSections.getGroupSize() != 0) {
-            classSections.addStudent(student.getId(), student.getFirstName());
-            classroomRepository.save(classSections);
-        } else {
-            Teacher finalized = teacherRepository.findTopByAssignedClassRoomIdOrderById(0);
-            if (finalized == null) {
-                System.out.println("No teachers available to assist");
-                return;
-            }
-            classSections.addStudent(student.getId(), student.getFirstName(), finalized.getId(), finalized.getFirstName());
-            finalized.setClassroomId(classSections.getClassRoomId());
-            classroomRepository.save(classSections);
-            teacherRepository.save(finalized);
-        }
-    }
+
 
     
     protected void showErrorOnWrongInput(JTextField TextField, String message) {
@@ -283,10 +252,7 @@ public class AddStudentLayout extends JFrame {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    private StudentFactory studentFactory;
-    private ClassroomRepository classroomRepository;
-    private TeacherRepository teacherRepository;
-    private ClassRulesRepository classRulesRepository;
+    private final ClassroomController classroomController = new ClassroomController(new ClassroomRepository(), new ClassRulesRepository(), new TeacherRepository());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

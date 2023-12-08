@@ -9,6 +9,7 @@ public class Student extends Person {
     @Column(name = "gpa")
     private double gpa;
 
+
     public Student() {
         super();
     }
@@ -27,4 +28,6 @@ public class Student extends Person {
     public void setGpa(double gpa){
         this.gpa = gpa;
     }
+
+
 }

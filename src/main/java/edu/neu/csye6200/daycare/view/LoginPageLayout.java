@@ -4,11 +4,22 @@
  */
 package edu.neu.csye6200.daycare.view;
 
+import edu.neu.csye6200.daycare.model.Person;
+import edu.neu.csye6200.daycare.repositories.StudentRepository;
+import edu.neu.csye6200.daycare.repositories.TeacherRepository;
+import edu.neu.csye6200.daycare.utils.Utils;
+
+import javax.swing.*;
+import java.sql.SQLException;
+
 /**
  *
- * @author dhair
+ * @author dhairya
  */
 public class LoginPageLayout extends javax.swing.JFrame {
+
+    private TeacherRepository teacherRepository;
+    private StudentRepository studentRepository;
 
     /**
      * Creates new form LoginPageLayout
@@ -40,6 +51,15 @@ public class LoginPageLayout extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt)  {
+                try {
+                    jButton1ActionPerformed(evt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +111,49 @@ public class LoginPageLayout extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (!Utils.VALIDATE_EMAIL_ADDRESS.apply(jTextField1.getText())) {
+            JOptionPane.showMessageDialog(new JFrame(), "Enter a valid Email-Id", "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextField1.requestFocus();
+            return;
+        }
+        if (jTextField2.getText().isEmpty() || jTextField2.getText().length() < 6) {
+            JOptionPane.showMessageDialog(new JFrame(), "Password should be atleast 6 characters", "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
+            jTextField2.requestFocus();
+            return;
+        }
+        Person currentPerson = null;
+        currentPerson = teacherRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
+        if (currentPerson != null) {
+            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Teacher", "Login Success!!",
+                    JOptionPane.ERROR_MESSAGE);
+            dispose();
+            // Open the second frame
+            TeacherDashboardLayout secondFrame = new TeacherDashboardLayout();
+            secondFrame.setVisible(true);
+        }
+        if (currentPerson == null) {
+            currentPerson = studentRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
+        }
+        if (currentPerson != null) {
+            System.out.println("Login Success as Parent");
+            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Parent", "Login Success!!",
+                    JOptionPane.ERROR_MESSAGE);
+            dispose();
+            // Open the second frame
+            StudentDashboardLayout secondFrame = new StudentDashboardLayout();
+            secondFrame.setVisible(true);
+        }
+        if (currentPerson == null) {
+            System.out.println("Login Failed");
+            JOptionPane.showMessageDialog(new JFrame(), "Invalid UserName/Password", "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:

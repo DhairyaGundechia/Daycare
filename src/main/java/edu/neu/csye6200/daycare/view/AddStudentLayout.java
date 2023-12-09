@@ -233,16 +233,13 @@ public class AddStudentLayout extends JFrame {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.persist(person);
-
+        session.getTransaction().commit();
         classroomController.mapStudentToClass(person);
         dispose();
         AddImmunizationLayout secondFrame = new AddImmunizationLayout();
         secondFrame.setVisible(true);
     }
 
-
-
-    
     protected void showErrorOnWrongInput(JTextField TextField, String message) {
         JOptionPane.showMessageDialog(new JFrame(), message.toUpperCase(), "Error!!",
                 JOptionPane.ERROR_MESSAGE);

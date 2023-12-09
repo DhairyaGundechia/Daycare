@@ -5,11 +5,8 @@
 package edu.neu.csye6200.daycare.view;
 import edu.neu.csye6200.daycare.factories.TeacherFactory;
 import edu.neu.csye6200.daycare.model.Teacher;
-import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
-import edu.neu.csye6200.daycare.repositories.TeacherRepository;
 import edu.neu.csye6200.daycare.utils.Utils;
 import java.time.LocalDate;
-import java.util.function.Function;
 import javax.swing.*;
 
 import org.hibernate.Session;
@@ -21,7 +18,6 @@ import org.hibernate.cfg.Configuration;
  */
 public class AddTeacherLayout extends javax.swing.JFrame {
 
-    private TeacherRepository teacherRepository;
 
     /**
      * Creates new form AddTeacherLayout

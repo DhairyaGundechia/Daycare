@@ -9,7 +9,6 @@ package edu.neu.csye6200.daycare.view;
 import java.awt.event.ActionEvent;
 
 import edu.neu.csye6200.daycare.model.Student;
-import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
 
 /**
  *
@@ -17,7 +16,6 @@ import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
  */
 public class StudentDashboardLayout extends javax.swing.JFrame {
 
-    private ClassroomRepository classroomRepository;
     private Student student;
 
     /** Creates new form StudentDashboardLayout */

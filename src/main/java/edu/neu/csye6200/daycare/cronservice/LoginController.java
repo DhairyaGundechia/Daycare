@@ -28,6 +28,8 @@ public class LoginController {
         }
         if(currentPerson == null){
             System.out.println("Invalid Credentials");
+            LoginPageLayout loginPageLayout = LoginPageLayout.getInstance();
+            loginPageLayout.setVisible(true);
             JOptionPane.showMessageDialog(new JFrame(), "Invalid UserName/Password", "Error!!",
                     JOptionPane.ERROR_MESSAGE);
         }

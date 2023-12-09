@@ -6,9 +6,11 @@ import org.hibernate.Session;
 
 public class ClassRulesRepository {
 
-    private final Session session = SessionUtil.getSession();
-
     public ClassRules findTopByMinAgeBeforeAndMaxAgeAfter(int age1, int age2) {
+        Session session = new org.hibernate.cfg.Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
        session.beginTransaction();
 
         TypedQuery<ClassRules> query = session.createQuery(

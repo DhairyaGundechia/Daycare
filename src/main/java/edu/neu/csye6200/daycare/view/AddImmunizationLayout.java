@@ -4,6 +4,10 @@
  */
 package edu.neu.csye6200.daycare.view;
 
+import edu.neu.csye6200.daycare.model.ImmunizationTracker;
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author dhair
@@ -258,43 +262,33 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String Hib1 = jTextField1.getText();
+        String Hib2 = jTextField2.getText();
+        String Hib3 = jTextField3.getText();
+        String Hib4 = jTextField4.getText();
+        String DTaP1 = jTextField5.getText();
+        String DTaP2 = jTextField6.getText();
+        String DTaP3 = jTextField7.getText();
+        String DTaP4 = jTextField8.getText();
+        String Hepatitis1 = jTextField9.getText();
+        String Hepatitis2 = jTextField10.getText();
+        String Hepatitis3 = jTextField11.getText();
+        String MMR1 = jTextField12.getText();
+        String Varicella = jTextField13.getText();
+
+        String immunizationDetails = Hib1 + "," + Hib2 + "," + Hib3 + "," + Hib4 + "," + DTaP1 + "," + DTaP2 + "," + DTaP3 + "," + DTaP4 + "," + Hepatitis1 + "," + Hepatitis2 + "," + Hepatitis3 + "," + MMR1 + "," + Varicella;
+
+        ImmunizationTracker immunizationTracker = new ImmunizationTracker();
+        immunizationTracker.setImmunizationDetails(immunizationDetails);
+        Session session = new Configuration()
+                .configure("hibernate.cfg.xml")
+                        .buildSessionFactory()
+                                .openSession();
+        session.beginTransaction();
+        session.persist(immunizationTracker);
+        session.getTransaction().commit();
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddImmunizationLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddImmunizationLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddImmunizationLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddImmunizationLayout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddImmunizationLayout().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

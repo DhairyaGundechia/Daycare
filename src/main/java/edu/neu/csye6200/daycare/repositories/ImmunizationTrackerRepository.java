@@ -4,12 +4,16 @@ package edu.neu.csye6200.daycare.repositories;
 import edu.neu.csye6200.daycare.model.ImmunizationTracker;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
 
 public class ImmunizationTrackerRepository {
 
-    private final Session session = SessionUtil.getSession();
 
         public ImmunizationTracker findTopByStudentId(int studentId) {
+            Session session = new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .buildSessionFactory()
+                    .openSession();
             session.beginTransaction();
 
             TypedQuery<ImmunizationTracker> query = session.createQuery(
@@ -25,6 +29,10 @@ public class ImmunizationTrackerRepository {
         }
 
         public ImmunizationTracker findByStudentId(int studentId) {
+            Session session = new Configuration()
+                    .configure("hibernate.cfg.xml")
+                    .buildSessionFactory()
+                    .openSession();
             session.beginTransaction();
 
             TypedQuery<ImmunizationTracker> query = session.createQuery(

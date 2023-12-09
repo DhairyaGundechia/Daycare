@@ -5,6 +5,8 @@
 
 package edu.neu.csye6200.daycare.view;
 
+import edu.neu.csye6200.daycare.model.Teacher;
+
 import java.awt.event.ActionEvent;
 
 /**
@@ -13,8 +15,11 @@ import java.awt.event.ActionEvent;
  */
 public class TeacherDashboardLayout extends javax.swing.JFrame {
 
+    private final Teacher teacher;
+
     /** Creates new form TeacherDashboardLayout */
-    public TeacherDashboardLayout() {
+    public TeacherDashboardLayout(Teacher teacher) {
+        this.teacher = teacher;
         initComponents();
     }
 
@@ -47,13 +52,13 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-        String data = "Classroom ID: \n";
+        String data = "Classroom ID: \n" + teacher.getClassroomId();
         jTextArea1.setText(data);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
-        String data2 = "Credits: \n";
+        String data2 = "Credits: \n" + teacher.getCredits();
         jTextArea2.setText(data2);
 
         jTextArea3.setColumns(20);
@@ -65,7 +70,7 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
-        String data4 = "Hourly Wage: \n";
+        String data4 = "Hourly Wage: \n" + teacher.getHourlyWage();
         jTextArea4.setText(data4);
 
         jButton1.setText("View All Students");
@@ -91,7 +96,7 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt)  {
 
                     jButton3ActionPerformed(evt);
-
+                    
             }
         });
 
@@ -158,10 +163,12 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
+
     }
 
     private void jButton1ActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
+
     }
 
 

@@ -5,16 +5,24 @@
 
 package edu.neu.csye6200.daycare.view;
 
+
 import java.awt.event.ActionEvent;
+
+import edu.neu.csye6200.daycare.model.Student;
+import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
 
 /**
  *
- * @author dhair
+ * @author dhairya
  */
 public class StudentDashboardLayout extends javax.swing.JFrame {
 
+    private ClassroomRepository classroomRepository;
+    private Student student;
+
     /** Creates new form StudentDashboardLayout */
-    public StudentDashboardLayout() {
+    public StudentDashboardLayout(Student student) {
+        this.student = student;
         initComponents();
     }
 
@@ -78,7 +86,7 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
-        String data2 = "GPA: \n";
+        String data2 = "GPA: \n" + student.getGpa();
         jTextArea2.setText(data2);
 
         jTextArea3.setColumns(20);
@@ -198,7 +206,6 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     // End of variables declaration//GEN-END:variables
-
 }
 
 

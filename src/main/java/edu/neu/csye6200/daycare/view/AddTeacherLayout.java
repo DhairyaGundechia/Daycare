@@ -5,6 +5,8 @@
 package edu.neu.csye6200.daycare.view;
 import edu.neu.csye6200.daycare.factories.TeacherFactory;
 import edu.neu.csye6200.daycare.model.Teacher;
+import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
+import edu.neu.csye6200.daycare.repositories.TeacherRepository;
 import edu.neu.csye6200.daycare.utils.Utils;
 import java.time.LocalDate;
 import java.util.function.Function;
@@ -18,6 +20,8 @@ import org.hibernate.cfg.Configuration;
  * @author dhair
  */
 public class AddTeacherLayout extends javax.swing.JFrame {
+
+    private TeacherRepository teacherRepository;
 
     /**
      * Creates new form AddTeacherLayout
@@ -207,50 +211,51 @@ public class AddTeacherLayout extends javax.swing.JFrame {
         secondFrame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    protected void showErrorOnWrongInput(JTextField TextField, String message) {
-        JOptionPane.showMessageDialog(new JFrame(), message.toUpperCase(), "Error!!",
-                JOptionPane.ERROR_MESSAGE);
-    }
-
     private void validateUserInput() {
         TeacherFactory teacherFactory = TeacherFactory.getInstance();
         Teacher teacher = (Teacher) teacherFactory.getObject();
         if (this.jTextField1.getText().isEmpty()) {
-            this.showErrorOnWrongInput(this.jTextField1, "First Name shouldn't be empty");
+            JOptionPane.showMessageDialog(new JFrame(), "First Name shouldn't be empty".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         teacher.setFirstName(this.jTextField1.getText());
 
         if (this.jTextField2.getText().isEmpty()) {
-            this.showErrorOnWrongInput(this.jTextField2, "Last Name shouldn't be empty");
+            JOptionPane.showMessageDialog(new JFrame(), "Last Name shouldn't be empty".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         teacher.setLastName(this.jTextField2.getText());
 
-        if (this.jTextField5.getText().isEmpty()) {
-            this.showErrorOnWrongInput(this.jTextField5, "Address shouldn't be empty");
+        if (this.jTextField8.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(new JFrame(), "Address shouldn't be empty".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        teacher.setAddress(this.jTextField5.getText());
+        teacher.setAddress(this.jTextField8.getText());
 
-        if (this.jTextField4.getText().isEmpty()) {
-            this.showErrorOnWrongInput(this.jTextField4, "Parents Name shouldn't be empty");
+        if (this.jTextField7.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(new JFrame(), "Parent's Name shouldn't be empty".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        teacher.setParentFullName(this.jTextField4.getText());
+        teacher.setParentFullName(this.jTextField7.getText());
 
         if (!Utils.VALIDATE_EMAIL_ADDRESS.apply(this.jTextField3.getText())) {
-            this.showErrorOnWrongInput(this.jTextField3, "Enter valid Email Id");
+            JOptionPane.showMessageDialog(new JFrame(), "Enter valid Email Id".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         teacher.setEmailId(this.jTextField3.getText());
 
         if (!Utils.isDateValid(this.jTextField4.getText(), true)) {
-            this.showErrorOnWrongInput(this.jTextField4, "Enter valid Date of Birth");
-
+            JOptionPane.showMessageDialog(new JFrame(), "Enter valid Date of Birth".toUpperCase(), "Error!!",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        teacher.setDateOfBirth(this.jTextField6.getText());
+
+        teacher.setDateOfBirth(this.jTextField4.getText());
         teacher.setPassword(Utils.GENERATE_PASSWORD.apply(teacher.getEmail()));
         teacher.setCreatedOn(LocalDate.now().toString());
         teacher.setCredits(Integer.parseInt(this.jTextField5.getText()));
@@ -263,9 +268,15 @@ public class AddTeacherLayout extends javax.swing.JFrame {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(teacher);
+        session.persist(teacher);
         session.getTransaction().commit();
         session.close();
+
+        JOptionPane.showMessageDialog(new JFrame(), "Teacher Registered Successfully", "Success!!",
+                JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+        LandingPageLayout secondFrame = new LandingPageLayout();
+        secondFrame.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

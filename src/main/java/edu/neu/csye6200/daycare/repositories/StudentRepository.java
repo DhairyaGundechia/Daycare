@@ -4,11 +4,15 @@ import edu.neu.csye6200.daycare.model.Student;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 
+import org.hibernate.cfg.Configuration;
+
 public class StudentRepository {
 
-    private final Session session = SessionUtil.getSession();
-
-    public Student getByEmailIdAndPassword(String emailId, String password) {
+    public static Student getByEmailIdAndPassword(String emailId, String password) {
+        Session session = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         TypedQuery<Student> query = session.createQuery(
@@ -22,7 +26,5 @@ public class StudentRepository {
         session.getTransaction().commit();
         return result;
     }
-
-
 }
 

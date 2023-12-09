@@ -238,10 +238,12 @@ public class AddStudentLayout extends JFrame {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(person);
-        session.getTransaction().commit();
-        session.close();
+        session.persist(person);
+
         classroomController.mapStudentToClass(person);
+        dispose();
+        AddImmunizationLayout secondFrame = new AddImmunizationLayout();
+        secondFrame.setVisible(true);
     }
 
 

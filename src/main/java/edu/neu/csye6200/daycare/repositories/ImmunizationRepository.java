@@ -6,9 +6,11 @@ import org.hibernate.Session;
 
 public class ImmunizationRepository {
 
-    private final Session session = SessionUtil.getSession();
-
     public Immunization findByVaccineName(String name) {
+        Session session = new org.hibernate.cfg.Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         TypedQuery<Immunization> query = session.createQuery(

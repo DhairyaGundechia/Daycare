@@ -5,9 +5,11 @@ import org.hibernate.Session;
 
 public class ClassroomRepository {
 
-    private final Session session = SessionUtil.getSession();
-
     public ClassSections findTopByMinAgeBeforeAndMaxAgeAfterOrderByClassRoomId(int age1, int age2) {
+        Session session = new org.hibernate.cfg.Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         ClassSections result = session.createQuery("SELECT c FROM classrooms c WHERE c.minAge < :age2 AND c.maxAge > :age1 ORDER BY c.classRoomId", ClassSections.class)
@@ -21,6 +23,10 @@ public class ClassroomRepository {
     }
 
     public ClassSections findTopByStudentIdsContaining(String studentId) {
+        Session session = new org.hibernate.cfg.Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         ClassSections result = session.createQuery("SELECT c FROM classrooms c WHERE :studentId MEMBER OF c.studentIds", ClassSections.class)
@@ -32,10 +38,11 @@ public class ClassroomRepository {
         return result;
     }
 
-    // Add other methods as needed
-
-
     public void save(ClassSections classSections) {
+        Session session = new org.hibernate.cfg.Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
         session.persist(classSections);
         session.getTransaction().commit();

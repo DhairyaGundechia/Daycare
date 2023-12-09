@@ -5,12 +5,16 @@
 package edu.neu.csye6200.daycare.view;
 
 import edu.neu.csye6200.daycare.model.Person;
+import edu.neu.csye6200.daycare.model.Student;
+import edu.neu.csye6200.daycare.model.Teacher;
 import edu.neu.csye6200.daycare.repositories.StudentRepository;
 import edu.neu.csye6200.daycare.repositories.TeacherRepository;
 import edu.neu.csye6200.daycare.utils.Utils;
 
 import javax.swing.*;
 import java.sql.SQLException;
+
+import static edu.neu.csye6200.daycare.cronservice.LoginController.login;
 
 /**
  *
@@ -126,33 +130,41 @@ public class LoginPageLayout extends javax.swing.JFrame {
             jTextField2.requestFocus();
             return;
         }
-        Person currentPerson = null;
-        currentPerson = teacherRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
-        if (currentPerson != null) {
-            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Teacher", "Login Success!!",
-                    JOptionPane.ERROR_MESSAGE);
-            dispose();
-            // Open the second frame
-            TeacherDashboardLayout secondFrame = new TeacherDashboardLayout();
-            secondFrame.setVisible(true);
-        }
-        if (currentPerson == null) {
-            currentPerson = studentRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
-        }
-        if (currentPerson != null) {
-            System.out.println("Login Success as Parent");
-            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Parent", "Login Success!!",
-                    JOptionPane.ERROR_MESSAGE);
-            dispose();
-            // Open the second frame
-            StudentDashboardLayout secondFrame = new StudentDashboardLayout();
-            secondFrame.setVisible(true);
-        }
-        if (currentPerson == null) {
-            System.out.println("Login Failed");
-            JOptionPane.showMessageDialog(new JFrame(), "Invalid UserName/Password", "Error!!",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+
+        String Email = jTextField1.getText();
+        String Password = jTextField2.getText();
+
+        login(Email, Password);
+
+
+//        Person currentPerson = null;
+//        currentPerson = teacherRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
+//        if (currentPerson != null) {
+//            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Teacher", "Login Success!!",
+//                    JOptionPane.ERROR_MESSAGE);
+//            dispose();
+//            // Open the second frame
+//            TeacherDashboardLayout secondFrame = new TeacherDashboardLayout((Teacher) currentPerson);
+//            secondFrame.setVisible(true);
+//        }
+//        if (currentPerson == null) {
+//            currentPerson = studentRepository.getByEmailIdAndPassword(jTextField1.getText(), jTextField2.getText());
+//        }
+//        if (currentPerson != null) {
+//            System.out.println("Login Success as Parent");
+//            JOptionPane.showMessageDialog(new JFrame(), "Login Success as Parent", "Login Success!!",
+//                    JOptionPane.ERROR_MESSAGE);
+//            dispose();
+//            // Open the second frame
+//            assert currentPerson instanceof Student;
+//            StudentDashboardLayout secondFrame = new StudentDashboardLayout((Student) currentPerson);
+//            secondFrame.setVisible(true);
+//        }
+//        if (currentPerson == null) {
+//            System.out.println("Login Failed");
+//            JOptionPane.showMessageDialog(new JFrame(), "Invalid UserName/Password", "Error!!",
+//                    JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

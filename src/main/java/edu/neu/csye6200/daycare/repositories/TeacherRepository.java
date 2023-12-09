@@ -4,11 +4,15 @@ import edu.neu.csye6200.daycare.model.Teacher;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 
+import org.hibernate.cfg.Configuration;
+
 public class TeacherRepository {
 
-    private final Session session = SessionUtil.getSession();
-
-    public Teacher getByEmailIdAndPassword(String emailId, String password) {
+    public static Teacher getByEmailIdAndPassword(String emailId, String password) {
+        Session session = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         TypedQuery<Teacher> query = session.createQuery(
@@ -24,7 +28,10 @@ public class TeacherRepository {
     }
 
     public Teacher findTopByAssignedClassRoomIdOrderById(int assignedClass) {
-
+        Session session = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
 
         TypedQuery<Teacher> query = session.createQuery(
@@ -40,6 +47,10 @@ public class TeacherRepository {
     }
 
     public void save(Teacher teacher) {
+        Session session = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory()
+                .openSession();
         session.beginTransaction();
         session.persist(teacher);
         session.getTransaction().commit();

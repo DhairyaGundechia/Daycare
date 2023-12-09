@@ -15,16 +15,26 @@ public class LoginController {
 
     public static void login(String Email, String Password){
         Person currentPerson = null;
-        currentPerson = TeacherRepository.getByEmailIdAndPassword(Email, Password);
-        if (currentPerson != null) {
-            TeacherDashboardLayout teacherDashboardLayout = new TeacherDashboardLayout((Teacher) currentPerson);
-            teacherDashboardLayout.setVisible(true);
-            return;
+        try {
+            currentPerson = TeacherRepository.getByEmailIdAndPassword(Email, Password);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        currentPerson = StudentRepository.getByEmailIdAndPassword(Email, Password);
-        if (currentPerson != null) {
-            StudentDashboardLayout studentDashboardLayout=  new StudentDashboardLayout((Student) currentPerson);
-            studentDashboardLayout.setVisible(true);
+        if(currentPerson == null) {
+            try {
+                currentPerson = StudentRepository.getByEmailIdAndPassword(Email, Password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(currentPerson != null) {
+            if(currentPerson instanceof Teacher) {
+                TeacherDashboardLayout teacherDashboardLayout = new TeacherDashboardLayout((Teacher) currentPerson);
+                teacherDashboardLayout.setVisible(true);
+            }else{
+                StudentDashboardLayout studentDashboardLayout=  new StudentDashboardLayout((Student) currentPerson);
+                studentDashboardLayout.setVisible(true);
+            }
         }
         if(currentPerson == null){
             System.out.println("Invalid Credentials");

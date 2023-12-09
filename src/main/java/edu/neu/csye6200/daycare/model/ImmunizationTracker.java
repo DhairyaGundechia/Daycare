@@ -72,8 +72,8 @@ public class ImmunizationTracker {
         this.upcomingDueDateMessage = upcoming_due_date_message;
     }
 
-    public Map<String, Object> getImmunizationDetailsMap() {
-        return new Gson().fromJson(this.immunizationDetails, new TypeToken<Map<String, Object>>() {
-        }.getType());
-    }
+//    public Map<String, Object> getImmunizationDetailsMap() {
+//        return new Gson().fromJson(this.immunizationDetails, new TypeToken<Map<String, Object>>() {
+//        }.getType());
+//    }
 }

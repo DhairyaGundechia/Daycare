@@ -236,7 +236,7 @@ public class AddStudentLayout extends JFrame {
         session.getTransaction().commit();
         classroomController.mapStudentToClass(person);
         dispose();
-        AddImmunizationLayout secondFrame = new AddImmunizationLayout();
+        AddImmunizationLayout secondFrame = new AddImmunizationLayout(person);
         secondFrame.setVisible(true);
     }
 

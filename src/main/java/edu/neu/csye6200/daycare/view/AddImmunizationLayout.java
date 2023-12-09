@@ -5,6 +5,7 @@
 package edu.neu.csye6200.daycare.view;
 
 import edu.neu.csye6200.daycare.model.ImmunizationTracker;
+import edu.neu.csye6200.daycare.model.Student;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
@@ -14,10 +15,12 @@ import org.hibernate.cfg.Configuration;
  */
 public class AddImmunizationLayout extends javax.swing.JFrame {
 
+    private Student student;
     /**
      * Creates new form AddImmunizationLayout
      */
-    public AddImmunizationLayout() {
+    public AddImmunizationLayout(Student student) {
+        this.student= student;
         initComponents();
     }
 
@@ -279,7 +282,9 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
         String immunizationDetails = Hib1 + "," + Hib2 + "," + Hib3 + "," + Hib4 + "," + DTaP1 + "," + DTaP2 + "," + DTaP3 + "," + DTaP4 + "," + Hepatitis1 + "," + Hepatitis2 + "," + Hepatitis3 + "," + MMR1 + "," + Varicella;
 
         ImmunizationTracker immunizationTracker = new ImmunizationTracker();
+        immunizationTracker.setStudentId(student.getId());
         immunizationTracker.setImmunizationDetails(immunizationDetails);
+
         Session session = new Configuration()
                 .configure("hibernate.cfg.xml")
                         .buildSessionFactory()

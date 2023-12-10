@@ -1,5 +1,6 @@
 package edu.neu.csye6200.daycare.cronservice;
 
+import edu.neu.csye6200.daycare.model.ImmunizationTracker;
 import edu.neu.csye6200.daycare.model.Person;
 import edu.neu.csye6200.daycare.model.Student;
 import edu.neu.csye6200.daycare.model.Teacher;

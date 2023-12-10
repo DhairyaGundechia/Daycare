@@ -1,12 +1,9 @@
 package edu.neu.csye6200.daycare.model;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-import java.util.Map;
 
 @Entity(name = "immunizationTracker")
 public class ImmunizationTracker {

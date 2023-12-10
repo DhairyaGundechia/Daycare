@@ -8,7 +8,6 @@ import org.hibernate.cfg.Configuration;
 
 public class ImmunizationTrackerRepository {
 
-
         public ImmunizationTracker findTopByStudentId(int studentId) {
             Session session = new Configuration()
                     .configure("hibernate.cfg.xml")
@@ -28,7 +27,7 @@ public class ImmunizationTrackerRepository {
             return result;
         }
 
-        public ImmunizationTracker findByStudentId(int studentId) {
+        public static ImmunizationTracker findByStudentId(int studentId) {
             Session session = new Configuration()
                     .configure("hibernate.cfg.xml")
                     .buildSessionFactory()

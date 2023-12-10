@@ -7,8 +7,12 @@ package edu.neu.csye6200.daycare.view;
 
 
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 
+import edu.neu.csye6200.daycare.model.ImmunizationTracker;
 import edu.neu.csye6200.daycare.model.Student;
+import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
+import edu.neu.csye6200.daycare.repositories.ImmunizationTrackerRepository;
 
 /**
  *
@@ -16,8 +20,7 @@ import edu.neu.csye6200.daycare.model.Student;
  */
 public class StudentDashboardLayout extends javax.swing.JFrame {
 
-    private Student student;
-
+    private final Student student;
     /** Creates new form StudentDashboardLayout */
     public StudentDashboardLayout(Student student) {
         this.student = student;
@@ -90,19 +93,14 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
-        String data3 = "Immunization Reminders: \n";
+        String data3 = "Immunization Reminders: \n" + ImmunizationTrackerRepository.findByStudentId(student.getId()).toString();
         jTextArea3.setText(data3);
-
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
-        String data4 = "Teacher Review: \n";
-        jTextArea4.setText(data4);
 
         jTextArea5.setColumns(20);
         jTextArea5.setRows(5);
         jScrollPane5.setViewportView(jTextArea5);
-        String data5 = "Annual Registration: \n";
+        String currentCreatedOn = LocalDate.parse(student.getCreatedOn()).getMonth() + "/" + LocalDate.parse(student.getCreatedOn()).getDayOfMonth() + "/" + LocalDate.now().getYear();
+        String data5 = "Annual Registration: \n" + currentCreatedOn;
         jTextArea5.setText(data5);
 
         jButton1.setText("View Immunization");
@@ -172,7 +170,6 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
         dispose();
 
         LandingPageLayout secondFrame = new LandingPageLayout();
@@ -180,12 +177,17 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
+        dispose();
+
+        TeacherReviewLayout secondFrame = new TeacherReviewLayout();
+        secondFrame.setVisible(true);
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        dispose();
 
+        ViewAllImmunization secondFrame = new ViewAllImmunization(student);
+        secondFrame.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

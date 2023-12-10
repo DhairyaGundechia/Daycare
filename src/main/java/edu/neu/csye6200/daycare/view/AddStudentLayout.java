@@ -265,5 +265,4 @@ public class AddStudentLayout extends JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
-
 }

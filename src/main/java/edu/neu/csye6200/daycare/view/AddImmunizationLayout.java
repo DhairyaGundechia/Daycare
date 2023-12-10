@@ -288,17 +288,17 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dueDateHib1 = String.format("%02d", LocalDate.parse(Hib1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib1,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
         String dueDateHib2 = String.format("%02d", LocalDate.parse(Hib2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib2,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
-        String dueDateHib3 = String.format("%02d", LocalDate.parse(Hib3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib3,formatter).getDayOfMonth()) + LocalDate.now().getYear();
-        String dueDateHib4 = String.format("%02d", LocalDate.parse(Hib4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib4,formatter).getDayOfMonth()) + LocalDate.now().getYear();
-        String dueDateDTaP1 = String.format("%02d", LocalDate.parse(DTaP1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP1,formatter).getDayOfMonth())+ LocalDate.now().getYear();
-        String dueDateDTaP2 = String.format("%02d", LocalDate.parse(DTaP2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP2,formatter).getDayOfMonth()) + LocalDate.now().getYear();
-        String dueDateDTaP3 = String.format("%02d", LocalDate.parse(DTaP3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP3,formatter).getDayOfMonth()) + LocalDate.now().getYear();
-        String dueDateDTaP4 = String.format("%02d", LocalDate.parse(DTaP4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP4,formatter).getDayOfMonth())+ LocalDate.now().getYear();
-        String dueDateHepatitis1 = String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getDayOfMonth())+ LocalDate.now().getYear();
-        String dueDateHepatitis2 = String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getDayOfMonth()) +LocalDate.now().getYear();
-        String dueDateHepatitis3 = String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getDayOfMonth())+ LocalDate.now().getYear();
-        String dueDateMMR1 = String.format("%02d", LocalDate.parse(MMR1,formatter).getMonthValue()) + "/" +  String.format("%02d", LocalDate.parse(MMR1,formatter).getDayOfMonth())+ LocalDate.now().getYear();
-        String dueDateVaricella = String.format("%02d", LocalDate.parse(Varicella,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Varicella,formatter).getDayOfMonth())+ LocalDate.now().getYear();
+        String dueDateHib3 = String.format("%02d", LocalDate.parse(Hib3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib3,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
+        String dueDateHib4 = String.format("%02d", LocalDate.parse(Hib4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib4,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
+        String dueDateDTaP1 = String.format("%02d", LocalDate.parse(DTaP1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP1,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateDTaP2 = String.format("%02d", LocalDate.parse(DTaP2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP2,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
+        String dueDateDTaP3 = String.format("%02d", LocalDate.parse(DTaP3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP3,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
+        String dueDateDTaP4 = String.format("%02d", LocalDate.parse(DTaP4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP4,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateHepatitis1 = String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateHepatitis2 = String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
+        String dueDateHepatitis3 = String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateMMR1 = String.format("%02d", LocalDate.parse(MMR1,formatter).getMonthValue()) + "/" +  String.format("%02d", LocalDate.parse(MMR1,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateVaricella = String.format("%02d", LocalDate.parse(Varicella,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Varicella,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
 
         String dueDate = dueDateHib1 + "," + dueDateHib2 + "," + dueDateHib3 + "," + dueDateHib4 + "," + dueDateDTaP1 + "," + dueDateDTaP2 + "," + dueDateDTaP3 + "," + dueDateDTaP4 + "," + dueDateHepatitis1 + "," + dueDateHepatitis2 + "," + dueDateHepatitis3 + "," + dueDateMMR1 + "," + dueDateVaricella;
         immunizationTracker.setUpcomingDueDate(dueDate);
@@ -368,6 +368,9 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
         session.persist(immunizationTracker);
         session.getTransaction().commit();
 
+        dispose();
+        LandingPageLayout landingPageLayout = new LandingPageLayout();
+        landingPageLayout.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

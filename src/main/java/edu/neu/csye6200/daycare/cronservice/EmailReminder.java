@@ -15,16 +15,18 @@ public class EmailReminder{
         // Sender's email configuration
 
         // db fetch email and password
-        final String senderEmail = "your.email@gmail.com";
-        final String senderPassword = "your_password";
+        final String senderEmail = "d07395123@gmail.com";
+        final String senderPassword = "Neuinfo5100section2";
 
         // Recipient's email address
-        String recipientEmail = "recipient@example.com";
+        String recipientEmail = "suhaskm23@gmail.com";
 
         // Email properties
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 

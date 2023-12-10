@@ -93,7 +93,8 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
-        String data3 = "Immunization Reminders: \n" + ImmunizationTrackerRepository.findByStudentId(student.getId()).toString();
+        ImmunizationTracker result= ImmunizationTrackerRepository.findByStudentId(student.getId());
+        String data3 = "Immunization Reminders: \n" + result.getImmunizationDetails() + result.getUpcomingDueDate();
         jTextArea3.setText(data3);
 
         jTextArea5.setColumns(20);

@@ -11,8 +11,10 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailReminder{
 
-    public static void main(String[] args) {
+    public static void emailSender(){
         // Sender's email configuration
+
+        // db fetch email and password
         final String senderEmail = "your.email@gmail.com";
         final String senderPassword = "your_password";
 

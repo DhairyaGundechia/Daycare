@@ -50,20 +50,32 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
+        String data = String.valueOf(teacher.getClassroomId());
+        jTextArea1.setText(data);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
+        String data1 = String.valueOf(teacher.getCredits());
+        jTextArea2.setText(data1);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+//        jTextArea3.setColumns(20);
+//        jTextArea3.setRows(5);
+//        jScrollPane3.setViewportView(jTextArea3);
+//        String data2 = String.valueOf(teacher.getAge());
 
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
+        String data3 = String.valueOf(teacher.getHourlyWage());
+        jTextArea4.setText(data3);
 
         jButton3.setText("Logout");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,16 +129,6 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
 
         LandingPageLayout secondFrame = new LandingPageLayout();
         secondFrame.setVisible(true);
-    }
-
-    private void jButton2ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-
-    }
-
-    private void jButton1ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-
     }
 
 

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -281,19 +282,19 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
         immunizationTracker.setStudentId(student.getId());
         immunizationTracker.setImmunizationDetails(immunizationDetails);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dueDateHib1 = String.format("%02d", LocalDate.parse(Hib1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib1,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
-        String dueDateHib2 = String.format("%02d", LocalDate.parse(Hib2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib2,formatter).getDayOfMonth()) + "/" + LocalDate.now().getYear();
-        String dueDateHib3 = String.format("%02d", LocalDate.parse(Hib3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib3,formatter).getDayOfMonth()) + "/" +LocalDate.now().getYear();
-        String dueDateHib4 = String.format("%02d", LocalDate.parse(Hib4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib4,formatter).getDayOfMonth()) +"/" + LocalDate.now().getYear();
-        String dueDateDTaP1 = String.format("%02d", LocalDate.parse(DTaP1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP1,formatter).getDayOfMonth())+ "/" +LocalDate.now().getYear();
-        String dueDateDTaP2 = String.format("%02d", LocalDate.parse(DTaP2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP2,formatter).getDayOfMonth()) +"/" + LocalDate.now().getYear();
-        String dueDateDTaP3 = String.format("%02d", LocalDate.parse(DTaP3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP3,formatter).getDayOfMonth()) +"/" + LocalDate.now().getYear();
-        String dueDateDTaP4 = String.format("%02d", LocalDate.parse(DTaP4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP4,formatter).getDayOfMonth())+"/" + LocalDate.now().getYear();
-        String dueDateHepatitis1 = String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getDayOfMonth())+ "/" +LocalDate.now().getYear();
-        String dueDateHepatitis2 = String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getDayOfMonth()) + "/" +LocalDate.now().getYear();
-        String dueDateHepatitis3 = String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getDayOfMonth())+"/" + LocalDate.now().getYear();
-        String dueDateMMR1 = String.format("%02d", LocalDate.parse(MMR1,formatter).getMonthValue()) + "/" +  String.format("%02d", LocalDate.parse(MMR1,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
-        String dueDateVaricella = String.format("%02d", LocalDate.parse(Varicella,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Varicella,formatter).getDayOfMonth())+ "/" + LocalDate.now().getYear();
+        String dueDateHib1 = String.format("%02d", LocalDate.parse(Hib1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib1,formatter).getDayOfMonth()) + "/" + Year.now();
+        String dueDateHib2 = String.format("%02d", LocalDate.parse(Hib2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib2,formatter).getDayOfMonth()) + "/" + Year.now();
+        String dueDateHib3 = String.format("%02d", LocalDate.parse(Hib3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib3,formatter).getDayOfMonth()) + "/" + Year.now();
+        String dueDateHib4 = String.format("%02d", LocalDate.parse(Hib4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hib4,formatter).getDayOfMonth()) +"/" + Year.now();
+        String dueDateDTaP1 = String.format("%02d", LocalDate.parse(DTaP1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP1,formatter).getDayOfMonth())+ "/" + Year.now();
+        String dueDateDTaP2 = String.format("%02d", LocalDate.parse(DTaP2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP2,formatter).getDayOfMonth()) +"/" + Year.now();
+        String dueDateDTaP3 = String.format("%02d", LocalDate.parse(DTaP3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP3,formatter).getDayOfMonth()) +"/" + Year.now();
+        String dueDateDTaP4 = String.format("%02d", LocalDate.parse(DTaP4,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(DTaP4,formatter).getDayOfMonth())+"/" + Year.now();
+        String dueDateHepatitis1 = String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis1,formatter).getDayOfMonth())+ "/" +Year.now();
+        String dueDateHepatitis2 = String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis2,formatter).getDayOfMonth()) + "/" +Year.now();
+        String dueDateHepatitis3 = String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Hepatitis3,formatter).getDayOfMonth())+"/" + Year.now();
+        String dueDateMMR1 = String.format("%02d", LocalDate.parse(MMR1,formatter).getMonthValue()) + "/" +  String.format("%02d", LocalDate.parse(MMR1,formatter).getDayOfMonth())+ "/" + Year.now();
+        String dueDateVaricella = String.format("%02d", LocalDate.parse(Varicella,formatter).getMonthValue()) + "/" + String.format("%02d", LocalDate.parse(Varicella,formatter).getDayOfMonth())+ "/" + Year.now();
 
         String dueDate = dueDateHib1 + "," + dueDateHib2 + "," + dueDateHib3 + "," + dueDateHib4 + "," + dueDateDTaP1 + "," + dueDateDTaP2 + "," + dueDateDTaP3 + "," + dueDateDTaP4 + "," + dueDateHepatitis1 + "," + dueDateHepatitis2 + "," + dueDateHepatitis3 + "," + dueDateMMR1 + "," + dueDateVaricella;
         immunizationTracker.setUpcomingDueDate(dueDate);
@@ -354,7 +355,7 @@ public class AddImmunizationLayout extends javax.swing.JFrame {
 
         String dueDateMessage = dueDateMessageHib1 + "," + dueDateMessageHib2 + "," + dueDateMessageHib3 + "," + dueDateMessageHib4 + "," + dueDateMessageDTaP1 + "," + dueDateMessageDTaP2 + "," + dueDateMessageDTaP3 + "," + dueDateMessageDTaP4 + "," + dueDateMessageHepatitis1 + "," + dueDateMessageHepatitis2 + "," + dueDateMessageHepatitis3 + "," + dueDateMessageMMR1 + "," + dueDateMessageVaricella;
         immunizationTracker.setUpcomingDueDateMessage(dueDateMessage);
-        immunizationTracker.setUpcomingDueDate(immunizationDetails);
+        immunizationTracker.setImmunizationDetails(immunizationDetails);
         Session session = new Configuration()
                 .configure("hibernate.cfg.xml")
                         .buildSessionFactory()

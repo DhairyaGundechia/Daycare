@@ -44,7 +44,7 @@ public class ViewAllImmunization extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
         ImmunizationTracker result= ImmunizationTrackerRepository.findByStudentId(student.getId());
-        String[] csvData = result.getUpcomingDueDate().split(",");
+        String[] csvData = result.getImmunizationDetails().split(",");
         StringBuilder stringBuilder = new StringBuilder();
         String immName = "Hib1,Hib2,Hib3,Hib4,DTap1,DTap2,DTap3,DTap4,HepatitisB1,HepatitisB2,HepatitisB3,MMR1,Varicella";
         String[] immNameArray = immName.split(",");

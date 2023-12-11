@@ -1,5 +1,10 @@
 package edu.neu.csye6200.daycare.cronservice;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,6 +15,18 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailReminder{
+
+    public static void emailService() throws IOException, InterruptedException{
+        HttpRequest request = HttpRequest.newBuilder()
+		.uri(URI.create("https://mail-sender-api1.p.rapidapi.com/"))
+		.header("content-type", "application/json")
+		.header("X-RapidAPI-Key", "6d5bef293cmshfc9814c90f2759ep10495fjsnda647fe638fd")
+		.header("X-RapidAPI-Host", "mail-sender-api1.p.rapidapi.com")
+		.method("POST", HttpRequest.BodyPublishers.ofString("{\r\n    \"sendto\": \"suhaskm23@gmail.com\",\r\n    \"ishtml\": \"false\",\r\n    \"title\": \"HELLO\",\r\n    \"body\": \"FROM THE OTHER SIDE / Text\"\r\n}"))
+		.build();
+        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
 
     public static void emailSender(){
         // Sender's email configuration

@@ -7,7 +7,5 @@ public class Driver {
     public static void main(String[] args) {
      java.awt.EventQueue.invokeLater(() -> new LandingPageLayout().setVisible(true));
 
-//        EmailReminder emailReminder = new EmailReminder();
-//        emailReminder.emailSender();
     }
 }

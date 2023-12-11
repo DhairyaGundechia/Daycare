@@ -51,13 +51,13 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
         String data = String.valueOf(teacher.getClassroomId());
-        jTextArea1.setText(data);
+        jTextArea1.setText("CLASSROOM ID: \n" + data);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
         String data1 = String.valueOf(teacher.getCredits());
-        jTextArea2.setText(data1);
+        jTextArea2.setText("CREDITS: \n" + data1);
 
 //        jTextArea3.setColumns(20);
 //        jTextArea3.setRows(5);
@@ -68,7 +68,7 @@ public class TeacherDashboardLayout extends javax.swing.JFrame {
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
         String data3 = String.valueOf(teacher.getHourlyWage());
-        jTextArea4.setText(data3);
+        jTextArea4.setText("HOURLY WAGE: \n" + data3);
 
         jButton3.setText("Logout");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

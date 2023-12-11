@@ -9,6 +9,7 @@ package edu.neu.csye6200.daycare.view;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 
+import edu.neu.csye6200.daycare.model.ClassSections;
 import edu.neu.csye6200.daycare.model.ImmunizationTracker;
 import edu.neu.csye6200.daycare.model.Student;
 import edu.neu.csye6200.daycare.repositories.ClassroomRepository;
@@ -81,7 +82,8 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-        String data = "CLASSROOM ID: \n";
+        ClassSections result1 = ClassroomRepository.findTopByStudentIdsContaining(String.valueOf(student.getId()));
+        String data = "CLASSROOM ID: \n" + result1.getClassRoomId();
         jTextArea1.setText(data);
 
         jTextArea2.setColumns(20);
@@ -94,7 +96,15 @@ public class StudentDashboardLayout extends javax.swing.JFrame {
         jTextArea3.setRows(5);
         jScrollPane3.setViewportView(jTextArea3);
         ImmunizationTracker result= ImmunizationTrackerRepository.findByStudentId(student.getId());
-        String data3 = "Immunization Reminders: \n" + result.getImmunizationDetails() + result.getUpcomingDueDate();
+        String[] csvData = result.getUpcomingDueDate().split(",");
+        StringBuilder stringBuilder = new StringBuilder();
+        String immName = "Hib1,Hib2,Hib3,Hib4,DTap1,DTap2,DTap3,DTap4,HepatitisB1,HepatitisB2,HepatitisB3,MMR1,Varicella";
+        String[] immNameArray = immName.split(",");
+        String data1 ="";
+        for (int i = 0; i < csvData.length; i++) {
+            data1 = (stringBuilder.append(immNameArray[i]).append(" ").append(csvData[i]).append("\n")).toString();
+        }
+        String data3 = "Immunization Reminders: \n" + data1;
         jTextArea3.setText(data3);
 
         jTextArea5.setColumns(20);

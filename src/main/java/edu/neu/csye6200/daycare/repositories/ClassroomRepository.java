@@ -22,17 +22,18 @@ public class ClassroomRepository {
         return result;
     }
 
-    public ClassSections findTopByStudentIdsContaining(String studentId) {
+    public static ClassSections findTopByStudentIdsContaining(String studentId) {
         Session session = new org.hibernate.cfg.Configuration()
                 .configure("hibernate.cfg.xml")
                 .buildSessionFactory()
                 .openSession();
         session.beginTransaction();
 
-        ClassSections result = session.createQuery("SELECT c FROM classrooms c WHERE :studentId MEMBER OF c.studentIds", ClassSections.class)
-                .setParameter("studentId", studentId)
+        ClassSections result = session.createQuery("SELECT c FROM classrooms c WHERE FIND_IN_SET(:studentId, c.studentIds) > 0", ClassSections.class)
+                .setParameter("studentId", "#"+studentId+"#")
                 .setMaxResults(1)
                 .getSingleResult();
+
 
         session.getTransaction().commit();
         return result;

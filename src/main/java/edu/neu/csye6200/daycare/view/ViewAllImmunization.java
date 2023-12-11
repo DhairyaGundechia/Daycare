@@ -4,6 +4,7 @@
  */
 package edu.neu.csye6200.daycare.view;
 
+import edu.neu.csye6200.daycare.model.ImmunizationTracker;
 import edu.neu.csye6200.daycare.model.Student;
 import edu.neu.csye6200.daycare.repositories.ImmunizationTrackerRepository;
 
@@ -42,7 +43,9 @@ public class ViewAllImmunization extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-        jTextArea1.setText(ImmunizationTrackerRepository.findByStudentId(student.getId()).toString());
+        ImmunizationTracker immunizationTracker = ImmunizationTrackerRepository.findByStudentId(student.getId());
+        String immunization = immunizationTracker.getImmunizationDetails() + immunizationTracker.getUpcomingDueDate();
+        jTextArea1.setText(immunization);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
